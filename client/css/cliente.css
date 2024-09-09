@@ -1,0 +1,13 @@
+#end{
+    border: 2px solid gray;
+}
+
+#endereco, #log{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#login{
+    padding: 10px;
+    border: 2px solid gray;
+}

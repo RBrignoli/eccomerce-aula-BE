@@ -1,0 +1,19 @@
+#central{
+    display: flex;
+}
+#imgProd{
+
+    width: 270px;
+    height: 300px;
+    margin-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+    border: 5px solid #070347;
+    border-radius: 20px;
+}
+
+#descProduto{
+    width: 10px;
+    border: solid 5px;
+
+}
