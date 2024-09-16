@@ -4,26 +4,17 @@ let usr = []
 let snh = []
 let produto = []
 
-const getTodosProdutos = () => {
-
-    fetch('http://localhost:8000/produtos', {
-        mode: 'no-cors',
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-
-        },
-        cache: 'no-store'
-    }).then(response => response.json())
-        .catch(error => {
+const getTodosProdutos = async () => {
+    resposta = await fetch('http://localhost:8000/produtos', {
+        mode:'no-cors'
+    }).catch(error => {
             console.error('Error:', error);
         });
-
-    return {}
+    const dados = await resposta.json();
+    return dados
 }
-
-getTodosProdutos()
+const test = getTodosProdutos();
+console.log(test);
 
 if (localStorage.prodArr) {
     produto = JSON.parse(localStorage.getItem('prodArr'))

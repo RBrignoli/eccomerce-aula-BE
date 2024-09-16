@@ -27,7 +27,7 @@ const login = async (req, res) => {
                 email: cliente.email,
                 _id: cliente.id
             },
-            'jwt_secret_key',
+            process.env.chave_criptografia,
             { expiresIn: 1000*60*60*24*365 }
         )
 
@@ -37,5 +37,11 @@ const login = async (req, res) => {
     }
 }
 
+const logout = async (req, res) => {
 
-module.exports = {login}
+    res.cookie("TokenAulaBE", "none", expiresIn=5)
+    res.send({message:'o usuario fez logout'})
+}
+
+
+module.exports = {login, logout}
