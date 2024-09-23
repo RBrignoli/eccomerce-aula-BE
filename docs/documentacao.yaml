@@ -1,0 +1,83 @@
+openapi: 3.0.3
+
+info:
+  title: API curso Programador BACKEND
+  version: 1.0.0
+  description: Esta api foi criada para validar os conhecimentos relacionados a backend, na disciplina de Codificação para Backend. Foram criados uma CRUD para uma tabela de clientes, outra CRUD para uma tabela de produtos, rotas para autenticação dos clientes, validação de cookies JWT, entre outras bibliotecas como bcrypt para criptografia de senha, jest e supertest para testes automatizados, dotenv para salvar variaveis de ambiente e etc.
+
+servers:
+  url: http://localhost:8000
+  description: Servidor local de testes 
+
+paths:
+  /auth/login:
+    post:
+      summary: Esta rota recebe email e senha, valida, e retorna um cookie JWT em caso de sucesso
+      parameters:
+        - name: email
+          in: query
+          description: O email que o usuario fez o cadastro
+          required: true
+          schema:
+            type: string
+        - name: senha
+          in: query
+          description: A senha cadastrada
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '406':
+          description: email ou senha não enviado
+        '404':
+          description: cliente não encontrado
+        '401':
+          description: email ou senha errados
+        '200':
+          description: sucesso
+
+  /auth/logout:
+    post:
+      summary: Esta rota não recebe nenhum parametro, e faz o logout do usuario eliminando o cookie
+      description: a rota elemina o cookie atualizando o tempo restante dele para 5 mili segundos
+      responses:
+        '200':
+          description: sucesso
+    
+  /produtos:
+    get:
+      summary: lista todos os produtos
+      description: esta rota lista todos os produtos, e retorna um array contendo os objetos
+      responses:
+        '200':
+          description: sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/produtos'
+        '401':
+          description: não autorizado
+
+components:
+  schemas:
+    produtos:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Codigo Identificador unico do produto
+        nome:
+          type: string
+          description: Nome do produto
+        descricao:
+          type: string
+          description: Descricao do produto
+        preco:
+          type: number
+          description: Preco do produto
+        imagem:
+          type: string
+          description: URL para imagem do produto
