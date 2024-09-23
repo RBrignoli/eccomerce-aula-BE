@@ -81,3 +81,12 @@ components:
         imagem:
           type: string
           description: URL para imagem do produto
+    cliente:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Codigo Identificador unico do produto
+        nome:
+          type: string
+          description: Nome do produto
